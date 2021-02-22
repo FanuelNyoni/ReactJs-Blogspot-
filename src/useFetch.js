@@ -1,6 +1,6 @@
 //creating our own custom hook
 
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const useFetch = (url) => {
 
@@ -9,12 +9,14 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const abortCont = new AbortController();
+
         //use set timeout to simulate delay of fetch
         setTimeout(() => {
             // using promises
-            fetch(url)
+            fetch(url, { signal: abortCont.signal })
                 .then(res => {
-                    if(!res.ok) {
+                    if (!res.ok) {
                         throw Error('Could not fetch Data from end point')
                     }
                     return res.json();
@@ -26,13 +28,20 @@ const useFetch = (url) => {
                 })
                 //error handling in case json server is down
                 .catch(err => {
-                    setError(err.message)
-                    setIsPending(false)
+                    if (err.name === 'AbortError') {
+                        console.log('Fetch Aborted')
+                    } else {
+                        setError(err.message)
+                        setIsPending(false)
+                    }
                 });
         }, 1000)
+
+        return () => abortCont.abort();
+
     }, [url]);
 
-    return {data, isPending, error}
+    return { data, isPending, error }
 }
 
 export default useFetch;
