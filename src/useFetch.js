@@ -14,7 +14,7 @@ const useFetch = (url) => {
         //use set timeout to simulate delay of fetch
         setTimeout(() => {
             // using promises
-            fetch(url, { signal: abortCont.signal })
+            fetch(url)
                 .then(res => {
                     if (!res.ok) {
                         throw Error('Could not fetch Data from end point')
