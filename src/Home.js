@@ -1,4 +1,4 @@
-import BlogList from './blog-list';
+import BlogList from './BlogList';
 import useFetch from './useFetch'; //tracks changes in variables
 
 
