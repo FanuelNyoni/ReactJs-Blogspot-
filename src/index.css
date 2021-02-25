@@ -126,34 +126,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .board {
-  border: 1rem solid #ff652f;
-  background: #ff652f;
-  width: 500px;
-  height: 500px;
+  border: 0.3rem solid #f7ddd4;
+  background: #f3d9d0;
+  width: 200px;
+  height: 200px;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  gap: 1rem;
+  gap: 0.1rem;
 }
 
 .squares {
-  background: #272727;
+  background: #7c7575;
   border: none;
-  font-size: 5rem;
+  font-size: 20px;
   /* font-weight: 800; */
   cursor: pointer;
   outline: none;
 }
 
 .X {
-  color: red;
+  color: rgb(197, 248, 11);
 }
 .O {
-  color: green;
+  color: rgb(110, 16, 4);
 }
 
 .info-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between, center;
 }
 
 h3 {
